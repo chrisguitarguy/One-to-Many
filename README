@@ -1,0 +1,27 @@
+One to Many
+===========
+
+A poor man's post to posts.
+
+Overload WordPress' `post_parent` column for creating one to many (or many to
+one, if you prefer) relationships.
+
+Very light weight, but also very inflexible and not as full featured as something
+like Posts 2 Posts.
+
+Usage
+-----
+
+Register a new post type, but pass in the `otm_parent` argument which should
+contain a string or array of post types which you want to to be "parents" of
+the post type being registered.
+
+    <?php
+    /** Plugin Name: Some Plugin */
+    add_action('init', function () {
+        register_post_type('some_type', array(
+            // other stuff here...
+            // 'otm_parent'     => 'page',
+            'otm_parent'    => array('post', 'page'),
+        ));
+    });
